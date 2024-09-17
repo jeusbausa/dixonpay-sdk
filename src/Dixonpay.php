@@ -149,6 +149,4 @@ class DixonPay
     {
         return Http::withHeaders($this->headers)->asForm();
     }
-
-    public function deposit() {}
 }

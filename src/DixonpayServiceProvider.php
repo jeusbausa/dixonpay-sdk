@@ -1,5 +1,8 @@
 <?php
 
+namespace Orwallet\DixonpaySdk;
+
+use DixonPay;
 use Illuminate\Support\ServiceProvider;
 
 class DixonpayServiceProvider extends ServiceProvider
