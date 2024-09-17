@@ -9,7 +9,7 @@ class DixonpayServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->bind("dixonpay-sdk", function (mixed $param) {
-            return new DixonPay($param);
+            return new Dixonpay($param);
         });
     }
 }

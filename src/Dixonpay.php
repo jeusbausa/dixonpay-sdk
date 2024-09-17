@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
-class DixonPay
+class Dixonpay
 {
     private string $api_url;
     private string $three_ds_api_url;
