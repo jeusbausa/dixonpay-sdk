@@ -1,5 +1,7 @@
 <?php
 
+namespace Orwallet\DixonpaySdk;
+
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
@@ -111,7 +113,7 @@ class DixonPay
         return $this;
     }
 
-    protected function setVault(array $vault): void
+    public function setVault(array $vault): void
     {
         $validator = Validator::make($vault, [
             "mid" => "required|string",
