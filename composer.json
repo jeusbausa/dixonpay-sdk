@@ -1,5 +1,12 @@
 {
     "name": "orwallet/dixonpay-sdk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeus Bausa",
+            "email": "jeus@orientalwallet.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Orwallet\\DixonpaySdk\\": "src/"
