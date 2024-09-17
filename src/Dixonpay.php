@@ -9,15 +9,15 @@ use Illuminate\Validation\ValidationException;
 
 class Dixonpay
 {
-    private string $api_url;
-    private string $three_ds_api_url;
-    private string $refund_api_url;
     private Collection $headers;
     protected Collection $vault;
     private array $payload;
 
     public function __construct(array $vault)
     {
+        $this->headers = collect();
+        $this->vault = collect();
+
         $this->setVault($vault);
     }
 
@@ -50,8 +50,8 @@ class Dixonpay
                 "phone" => "nullable|string",
                 "state" => "nullable|string",
                 "zip" => "nullable|string",
-                "notify_url" => "required|string|url:https",
-                "return_url" =>  "nullable|string|url:https",
+                "notify_url" => "required|string|url",
+                "return_url" =>  "nullable|string|url",
             ] : [
                 "encryption" => "required|string",
                 "currency" => "required|string",
@@ -120,35 +120,35 @@ class Dixonpay
             "terminal_number" => "required|string",
             "sign_key" => "required|string",
             "registered_website" => "required|string",
-            "api_url" => "required|url,https",
-            "api3ds_url" => "required|url,https",
-            "refund_api_url" => "required|url,https",
+            "api_url" => "required|url",
+            "api3ds_url" => "required|url",
+            "refund_api_url" => "required|url",
         ]);
 
         if ($validator->fails()) {
             throw new ValidationException($validator);
         }
 
-        $this->vault->push($validator->validated());
+        $this->vault = collect($validator->validated());
     }
 
     public function request()
     {
-        return $this->http()->post($this->api_url, $this->payload);
+        return $this->http()->post($this->vault->get("api_url"), $this->payload);
     }
 
     public function request3ds()
     {
-        return $this->http()->post($this->three_ds_api_url, $this->payload);
+        return $this->http()->post($this->vault->get("api3ds_url"), $this->payload);
     }
 
     public function requestRefund()
     {
-        return $this->http()->post($this->refund_api_url, $this->payload);
+        return $this->http()->post($this->vault->get("refund_api_url"), $this->payload);
     }
 
     private function http()
     {
-        return Http::withHeaders($this->headers)->asForm();
+        return Http::withHeaders(...$this->headers->toArray())->asForm();
     }
 }
