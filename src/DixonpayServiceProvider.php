@@ -2,6 +2,7 @@
 
 namespace Orwallet\DixonpaySdk;
 
+use Orwallet\DixonpaySdk\Dixonpay;
 use Illuminate\Support\ServiceProvider;
 
 class DixonpayServiceProvider extends ServiceProvider
