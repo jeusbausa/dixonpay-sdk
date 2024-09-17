@@ -8,6 +8,6 @@ class Dixonpay extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return "dixonpay";
+        return "dixonpay-sdk";
     }
 }
