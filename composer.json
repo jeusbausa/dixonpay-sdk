@@ -1,0 +1,21 @@
+{
+    "name": "orwallet/dixonpay-sdk",
+    "autoload": {
+        "psr-4": {
+            "Orwallet\\DixonpaySdk\\": "src/"
+        }
+    },
+    "require-dev": {
+        "laravel/framework": "^10.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Orwallet\\DixonpaySdk\\DixonpayServiceProvider"
+            ],
+            "aliases": {
+                "Dixonpay": "Orwallet\\DixonpaySdk\\Facade\\Dixonpay"
+            }
+        }
+    }
+}
